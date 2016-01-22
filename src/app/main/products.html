@@ -1,0 +1,51 @@
+<h1>Products page</h1>
+
+<div class="container">
+  <div class="row">
+    <form class="search-form">
+      <input type="text" name="search" placeholder="Busca" ng-model="search_input">
+      <button type="submit" ng-click="search_for(search_input)">Serach</button>
+    </form>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div ng-if="has_some_category()">
+      <div>
+        <a ng-if="hasFilter()" href="#/products">todos</a>
+        <a ng-repeat="category in categories" ng-href="#/products/?category={{category.id}}">{{ category.name }}</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <section ng-if="has_products()">
+      <div ng-repeat="product in products">
+        <productcard product="product"></productcard>
+      </div>
+      <div ng-if="!hasEmptyDataSet()">
+        <a href="" ng-click="loadMore()">Carregar Mais</a>
+      </div>
+    </section> <!-- /store-items -->
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <section ng-if="!has_products()">
+
+      <div>
+        <h1>Nenhum produto encontrado...</h1>
+        <p>Tente outra categoria ou tente novamente mais tarde.</p>
+      </div>
+
+      <div>
+        <a href="#/" class="custom-button button-style1 large">Voltar para o início</a>
+      </div>
+
+    </section>
+  </div>
+</div>

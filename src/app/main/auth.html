@@ -1,0 +1,58 @@
+
+  <div class="container">
+    <div class="row">
+
+        <header>
+          <h2><span>Login</span></h2>
+        </header>
+
+        <form ng-submit="signin(loginFormData)" ng-init="loginFormData = {}", name="loginForm">
+
+          <div>
+            <input type="email" name="email" placeholder="Email*" ng-model="loginFormData.user_email" ng-minlength="3" ng-maxlength="65" required>
+            <!-- input validations -->
+            <div ng-messages="loginForm.email.$error" ng-show="loginForm.email.$touched">
+              <span ng-message="required">O campo EMAIL está vazio.</span>
+              <span ng-message="minlength">O campo EMAIL está muito curto.</span>
+              <span ng-message="maxlength">O campo EMAIL está muito longo.</span>
+              <span ng-message="email">Informe um email válido.</span>
+            </div><!-- /input validations -->
+          </div><!-- /input-container -->
+
+          <div>
+            <input type="password" name="password" placeholder="Senha*" ng-model="loginFormData.user_pass" ng-minlength="3" ng-maxlength="65" required>
+            <!-- input validations -->
+            <div ng-messages="loginForm.password.$error" ng-show="loginForm.password.$touched">
+              <span ng-message="required">O campo SENHA está vazio.</span>
+              <span ng-message="minlength">O campo SENHA está muito curto.</span>
+              <span ng-message="maxlength">O campo SENHA está muito longo.</span>
+            </div><!-- /input validations -->
+          </div><!-- /input-container -->
+
+          <div>
+            <button type="submit">Entrar</button>
+          </div>
+
+        </form>
+
+    </div><!-- /row -->
+  </div><!-- /container -->
+
+  <div class="container">
+    <div class="row">
+
+        <div>
+          <a href="#/forgot-password" title="Recupere a senha perdida.">
+            <h2>Esqueceu sua senha?</h2>
+          </a>
+        </div>
+
+
+        <div>
+          <a href="#/register" title="Cadastre-se já. É rápido e fácil!">
+            <h2>Ainda não tem cadastro?</h2>
+          </a>
+        </div>
+
+    </div>
+  </div>

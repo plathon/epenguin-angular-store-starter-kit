@@ -1,0 +1,79 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <header class="section-title">
+        <h2><span>Cadastro rápido</span></h2>
+      </header>
+    </div>
+  </div><!-- /row -->
+</div><!-- /container -->
+
+<div class="container">
+  <div class="row">
+
+    <form ng-submit="signup(registerFormData)" ng-init="registerFormData = {}" name="registerForm">
+
+      <div>
+        <input type="text" name="name" placeholder="Nome*" ng-model="registerFormData.user.full_name" ng-minlength="3" ng-maxlength="65" required>
+        <!-- validations-container -->
+        <div ng-messages="registerForm.name.$error" ng-show="registerForm.name.$touched">
+          <span ng-message="required">O campo Nome está vazio.</span>
+          <span ng-message="minlength">O campo Nome está muito curto.</span>
+          <span ng-message="maxlength">O campo Nome está muito longo.</span>
+        </div><!-- /validations-container -->
+      </div><!-- /input-container -->
+
+      <div>
+        <input type="text" name="telephone" placeholder="Telefone*" ng-model="registerFormData.user.phone_number" ng-minlength="8" ng-maxlength="12" required>
+        <!-- validations-container -->
+        <div ng-messages="registerForm.telephone.$error" ng-show="registerForm.telephone.$touched">
+          <span ng-message="required">O campo Telefone está vazio.</span>
+          <span ng-message="minlength">O campo Telefone está muito curto.</span>
+          <span ng-message="maxlength">O campo Telefone está muito longo.</span>
+        </div><!-- /validations-container -->
+      </div><!-- /input-container -->
+
+      <div>
+        <input type="email" name="email" placeholder="Email*" ng-model="registerFormData.user.email" ng-minlength="3" ng-maxlength="65" required>
+        <!-- validations-container -->
+        <div ng-messages="registerForm.email.$error" ng-show="registerForm.email.$touched">
+          <span ng-message="required">O campo EMAIL está vazio.</span>
+          <span ng-message="minlength">O campo EMAIL está muito curto.</span>
+          <span ng-message="maxlength">O campo EMAIL está muito longo.</span>
+          <span ng-message="email">Imforme um email válido.</span>
+        </div><!-- /validations-container -->
+      </div><!-- /input-container -->
+
+      <div>
+        <input type="password" name="password" placeholder="Senha*" ng-model="registerFormData.user.password" ng-minlength="3" ng-maxlength="65" required>
+        <!-- validations-container -->
+        <div ng-messages="registerForm.password.$error" ng-show="registerForm.password.$touched">
+          <span ng-message="required">O campo Senha está vazio.</span>
+          <span ng-message="minlength">O campo Senha está muito curto.</span>
+          <span ng-message="maxlength">O campo Senha está muito longo.</span>
+        </div><!-- /validations-container -->
+      </div><!-- /input-container -->
+
+      <div>
+          <input type="password" name="password_confirmation" placeholder="Repita a Senha*" ng-model="registerFormData.user.password_confirmation" ng-minlength="3" ng-maxlength="65" required>
+          <!-- validations-container -->
+          <div ng-messages="registerForm.password_confirmation.$error" ng-show="registerForm.password_confirmation.$touched">
+            <span ng-message="required">O campo CONFIRMAÇÃO está vazio.</span>
+            <span ng-message="minlength">O campo Senha está muito curto.</span>
+            <span ng-message="maxlength">O campo Senha está muito longo.</span>
+          </div><!-- /validations-container -->
+      </div><!-- /input-container -->
+
+      <div>
+        <input type="checkbox" name="terms" required>
+          Li e concordo com os <a href="" ng-click="terms_and_cond()"><span id="read-terms">Termos e condições.</span></a>
+      </div><!-- /input-container -->
+
+      <div>
+        <button type="submit">Cadastrar</button>
+      </div>
+
+    </form>
+
+  </div>
+</div>

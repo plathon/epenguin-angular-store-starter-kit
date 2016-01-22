@@ -1,0 +1,167 @@
+<section ng-if="has_current()">
+
+  <div class="container">
+    <div class="row">
+      <h1><span>Detalhes do Pedido #{{ current_order.id }}</h1>
+    </div><!-- /row -->
+  </div><!-- /container -->
+
+  <div class="container">
+      <button ng-click="close_current()" class="close-order">Fechar</button>
+  </div>
+
+  <div class="container">
+    <div class="row">
+
+        <table>
+          <thead>
+            <tr>
+              <th>Produto</th>
+              <th>Preço</th>
+              <th>Quantidade</th>
+              <th>Subtotal</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="product in current_order.products">
+              <td> {{product.name}} </td>
+              <td><strong> {{ product.price | currency : "R$ "}} </strong></td>
+              <td><strong> {{ current_order.orderitems[$index].quantity }} </strong></td>
+              <td><strong> {{product.price * current_order.orderitems[$index].quantity | currency : "R$ " }} </strong></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div>
+
+          <div>
+            <h2>Dados da Entrega</h2>
+          </div>
+
+          <div ng-if="!current_order.no_shipping">
+            <p> <strong>Nome do destinatário:</strong> <span>{{ current_order.receiver }}.</span></p>
+          </div>
+
+          <div ng-if="current_order.no_shipping">
+            <p> <strong>receberá o produto:</strong> <span>{{ current_order.no_shipping_name }}.</span></p>
+          </div>
+
+          <div ng-if="!current_order.no_shipping">
+            <p> <strong>Telefone:</strong> <span>{{ current_order.phone_number }}.</span></p>
+          </div>
+
+          <div ng-if="current_order.no_shipping">
+            <p> <strong>Telefone:</strong> <span>{{ current_order.no_shipping_phone }}.</span></p>
+          </div>
+
+          <div>
+            <p>
+               <strong ng-if="!current_order.no_shipping">
+                 Data da Entrega:
+               </strong>
+               <strong ng-if="current_order.no_shipping">
+                 Data da Retirada:
+               </strong>
+               <span>{{ current_order.selected_date | date:'dd/MM/yyyy HH:mm' }}</span>
+             </p>
+          </div>
+
+          <div ng-if="current_order.no_shipping">
+            <p><strong>Entrega:</strong> O cliente escolheu retirar na loja </p>
+          </div>
+          <div ng-if="!current_order.no_shipping">
+            <p>
+              <strong>Endereço da entrega:</strong><br>
+              <span>{{ current_order.address }}, n {{ current_order.number }}, - {{ current_order.complement }}</span><br>
+              <span>{{ current_order.neighborhood }} - {{ current_order.zipcode }}</span><br>
+              <span>{{ current_order.city }}/{{ current_order.state }} - {{ current_order.country }}</span><br>
+            </p>
+          </div>
+
+          <div>
+            <p ng-if="!current_order.no_payment"><strong>Pagamento:</strong> <span>{{ current_order.payment_status }}.</span></p>
+            <p ng-if="current_order.no_payment"><strong>Pagamento:</strong> <span>O Cliente escolheu pagar na loja.</span></p>
+          </div>
+
+          <div ng-if="!current_order.no_shipping">
+            <p><strong>Envio:</strong> <span>{{ current_order.shipping_status }}.</span></p>
+          </div>
+        </div>
+
+
+        <div>
+          <h2>Valores</h2>
+          <div>
+            <p> <strong>Subtotal:</strong> <span>{{ current_order.sub_total | currency : "R$ " }}</span></p>
+          </div>
+          <div ng-if="!current_order.no_shipping">
+            <p> <strong>Frete:</strong> <span>{{ current_order.shipping_value | currency : "R$ " }}</span></p>
+          </div>
+          <div>
+            <p> <strong>Desconto:</strong> <span>{{ current_order.off | currency : "R$ " }}</span></p>
+          </div>
+          <div>
+            <p> <strong>Total:</strong> <span>{{ current_order.total | currency : "R$ " }}</span></p>
+          </div>
+        </div>
+
+    </div>
+  </div>
+</section>
+
+<section ng-if="has_orders()">
+  <div class="container">
+    <div class="row">
+
+        <h1>Meus Pedidos</h1>
+
+        <table>
+          <thead>
+          	<tr>
+							<th>Código</th>
+							<th>Data</th>
+							<th>Preço Total</th>
+							<th>Ações</th>
+            </tr>
+      		</thead>
+					<tbody>
+						<tr ng-repeat="order in orders">
+							<td>
+								{{ order.id }}
+							</td>
+							<td>
+								{{ order.created_at | date:'dd/MM/yyyy HH:mm' }}
+							</td>
+							<td>
+							  {{ order.total | currency : "R$ " }}
+							</td>
+							<td>
+                <button type="button" ng-click="showOrder(order.id)">Detalhes</button>
+              </td>
+						</tr>
+					</tbody>
+	      </table>
+
+  	</div>
+	</div>
+</section>
+
+<section ng-if="!has_orders()">
+  <div class="container">
+  	<div class="row">
+
+      <h1>Nenhum Pedido Registrado</h1>
+
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="row">
+
+        <a href="#/account">Minha Conta</a>
+
+    </div>
+  </div>
+</section>

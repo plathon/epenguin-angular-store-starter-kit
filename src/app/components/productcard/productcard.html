@@ -1,0 +1,22 @@
+<div class="store-item space-top ofh" data-wow-delay="0.4s">
+  <figure class="figure-img-content">
+    <a href="#/product/{{ product.id }}">
+      <span ng-if="image.hasImage(product.images)" class="figure-img-helper"></span><img ng-if="image.hasImage(product.images)" id="bigpic" itemprop="image" ng-src="{{ image.url(product.images, '500') }}" alt="{{ product.name }}" class="figure-img">
+      <span ng-if="!image.hasImage(product.images)" class="figure-img-helper"></span><img ng-if="!image.hasImage(product.images)" id="bigpic" itemprop="image" ng-src="https://s3.amazonaws.com/epenguin-images-v/Img_Fail_800x600.png" alt="Imagem Não Encontrada" class="figure-img">
+    </a>
+  </figure>
+  <div class="food-name-container">
+    <h3 class="food-name text-middle">
+      <a href="#/product/{{ product.id }}">{{ product.name }}</a>
+    </h3>
+  </div>
+  <div class="food-order">
+    <p class="product-price">{{ product.price | currency : "R$ " }}</p>
+    <form>
+      <div class="float_center">
+        <button ng-if="product.quantity > 0" ng-click="cart.addToCart(product)" type="button" class="add-to-cart-link-style2 child">Adicionar ao carrinho</button>
+        <button ng-if="product.quantity <= 0" ng-click="cart.addToCart(product)" type="button" class="add-to-cart-link-style2 child" disabled>Produto Esgotado</button>
+      </div>
+    </form>
+  </div><!-- /food-order -->
+</div><!-- /store-item -->

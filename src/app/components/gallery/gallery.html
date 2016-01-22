@@ -1,0 +1,12 @@
+<div id="gallerybox">
+  <div class="main-image">
+    <figure>
+      <img ng-src="https://s3.amazonaws.com/epenguin-images-v/Img_Fail_800x600.png">
+    </figure>
+  </div><!-- /main-image -->
+  <div class="thumbnails">
+    <figure class="thumbnail">
+      <img style="margin:10px; max-width:100px;" ng-repeat="imageUrl in gallery.thumb track by $index" ng-src="{{ imageUrl }}" data-index="{{ $index }}">
+    </figure>
+  </div><!-- /thumbnails -->
+</div><!-- /item-slideshow -->

@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="row">
+    <gallery gallery="gallery"></gallery>
+  </div>
+</div>
+
+<div>
+  <div class="food-info">
+    <h3><a href="#">{{ product.name }}</a></h3>
+    <p>{{ product.price | currency : "R$ " }}</p>
+    <p>{{ product.description }}</p>
+  </div><!-- /food-info -->
+  <form>
+      <input type="text" name="product_qty" ng-init="productQty = 1" ng-model="productQty">
+      <button ng-if="product.quantity > 0" type="button" ng-click="addToCart(product, productQty)">
+        Adicionar ao carrinho
+      </button>
+      <button ng-if="product.quantity <= 0" type="button" disabled>
+        Produto Esgotado
+      </button>
+  </form><!-- /food-order -->
+</div><!-- /col-md-6 -->

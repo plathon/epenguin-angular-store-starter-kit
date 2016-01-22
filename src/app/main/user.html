@@ -1,0 +1,53 @@
+<form ng-submit="update(userFormData)">
+
+  <div class="container">
+    <div class="row">
+
+      <h2>Meus Dados</h2>
+
+      <div>
+        <div>
+          <input type="text" name="name" placeholder="Nome" ng-model="userFormData.full_name">
+        </div><!-- /input-container -->
+
+        <div>
+          <input type="text" name="telephone" placeholder="Telefone" ng-model="userFormData.phone_number">
+        </div><!-- /input-container -->
+
+        <div>
+          <input type="text" name="email" placeholder="Email" ng-model="userFormData.email" disabled>
+        </div><!-- /input-container -->
+      </div>
+
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+
+      <h2>Alterar minha Senha</h2>
+
+      <div>
+        <div>
+            <input type="password" name="oldpassword" placeholder="Digite a Senha Antiga" ng-model="userFormData.current_password">
+        </div><!-- /input-container -->
+
+        <div>
+            <input type="password" name="newpassword" placeholder="Digite a Nova Senha" ng-model="userFormData.password">
+        </div><!-- /input-container -->
+
+        <div>
+          <button type="submit" id="change-password-button">Alterar</button>
+        </div><!-- /input-container -->
+     </div><!-- /row -->
+
+   </div><!-- /row -->
+ </div><!-- /container -->
+
+</form>
+
+  <div class="container">
+    <div class="row">
+      <a href="#/account">Minha Conta</a>
+    </div>
+  </div>

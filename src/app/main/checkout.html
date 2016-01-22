@@ -1,0 +1,267 @@
+<div>
+
+	<div class="container">
+	  <div class="row">
+      <h2>Escolha como Receber o Pedido</h2>
+	  </div>
+	</div>
+
+	<div class="container">
+	  <div class="row">
+
+      <div ng-if="deliveryData.shipping">
+        <input type="radio" name="shipping" id="recive" ng-value="true" ng-model="checkoutFromData.willShip" ng-checked="true">
+        <div>
+          <label for="recive">
+						<p>Receber o Pedido</p>
+          	<p><small>Escolha um dos seus endereços favoritos ou cadastre um novo.</small></p>
+      		</label>
+				</div><!-- /payment-method-name -->
+      </div><!-- /payment-method -->
+
+    	<div ng-if="deliveryData.no_shipping">
+        <input type="radio" name="shipping" id="getinstore" ng-value="false" ng-model="checkoutFromData.willShip">
+        <div>
+          <label for="getinstore">
+						<p>Retirar na Loja</p>
+						<p><small>Consulte os dias e horários de funcionamento para retirada.</small></p>
+					</label>
+        </div> <!-- /payment-method-name -->
+				<div ng-if="paymentData.local_payment">
+					<input type="checkbox" name="shipping" id="getinstore" ng-value="false" ng-model="checkoutFromData.localPayment">
+					<label>Desejo pagar na loja.</label>
+				</div>
+      </div> <!-- /payment-method -->
+
+		</div>
+	</div>
+
+	<div ng-if="!checkoutFromData.willShip">
+	  <div class="container">
+	    <div class="row">
+
+	      <header class="section-title">
+	      	<h2>Dados da Pessoa que vai<span> Retirar na Loja</span></h2>
+	      </header>
+
+				<div class="row">
+	        <div>
+	          <input type="checkbox" id="reciver-person" name="reciver-person" ng-model="$parent.checkoutFromData.iWillRetriveTheProduct" ng-true-value="true" ng-false-value="false">
+						<label for="reciver-person"> Eu mesmo vou retirar o pedido na loja.</label>
+	        </div><!-- /input-container -->
+	      </div>
+
+	      <div ng-if="!$parent.checkoutFromData.iWillRetriveTheProduct">
+	        <div>
+	            <input type="text" name="name" placeholder="Nome da pessoa que vai retirar na loja." ng-model="$parent.checkoutFromData.no_shipping_name" required>
+	        </div><!-- /input-container -->
+	        <div>
+	        	<input type="text" name="phone" placeholder="Telefone da pessoa que vai retirar na loja." ng-model="$parent.checkoutFromData.no_shipping_phone" required>
+	        </div><!-- /input-container -->
+	      </div>
+
+	    </div>
+	  </div>
+	</div>
+
+	<div ng-if="checkoutFromData.willShip && deliveryData.shipping">
+	  <div class="container">
+	    <div class="row">
+
+	        <h2>Escolha um Endereço</h2>
+
+          <div>
+            <select id="select-address" ng-options="address.id as (address.first_name + ' ' + address.last_name + ': ' + address.address + ', n ' + address.number + ' - ' + address.city_name + '/' + address.state_name ) for address in addresses" ng-model="$parent.checkoutFromData.address" ng-change="getShippingPrice($parent.checkoutFromData.address)">
+							<option>Selecione o endereço de Entrega</option>
+						</select>
+          </div>
+          <div>
+            <button type="button" ng-click="address_tab_toogle()">Cadastrar Novo Endereço</button>
+          </div>
+
+	    </div>
+	  </div>
+	</div>
+
+	<div ng-if="address_tab && checkoutFromData.willShip">
+
+    <h2>Cadastrar Novo Endereço</h2>
+
+    <form>
+
+      <div>
+        <div>
+            <input type="text" name="zip"  class="zip" id="zip" placeholder="Digite o CEP*" ng-model="addressFormData.zipcode" required>
+        </div><!-- /input-container -->
+        <div>
+            <button class="left get-zip" ng-click="getAddressByZipcode(addressFormData.zipcode)" type="button">OK</button>
+        </div><!-- /input-container -->
+        <div>
+            <a href="http://www.buscacep.correios.com.br/" target="_blank">
+              <button type="button">Não sabe o CEP?</button>
+            </a>
+        </div><!-- /input-container -->
+      </div>
+
+      <div ng-if="current_address">
+
+      <div>
+        <div>
+            <input type="text" name="cowntry" ng-model="addressFormData.country"  class="cowntry" id="cowntry" placeholder="País" title="Preenchimento automático." disabled>
+        </div><!-- /input-container -->
+
+        <div>
+            <input type="text" name="state" ng-model="addressFormData.state_name" class="state" id="state" placeholder="Estado" title="Preenchimento automático." disabled>
+        </div><!-- /input-container -->
+
+        <div>
+            <input type="text" name="city" ng-model="addressFormData.city_name" class="city" id="city" placeholder="Cidade" title="Preenchimento automático." disabled>
+        </div><!-- /input-container -->
+
+        <div>
+            <input type="text" name="address" ng-model="addressFormData.address" class="address" id="address2" placeholder="Endereço" title="Preenchimento automático." disabled>
+        </div><!-- /input-container -->
+
+        <div>
+            <input type="text" name="district" ng-model="addressFormData.neighborhood_name" class="district" id="district" placeholder="Bairro" title="Preenchimento automático." disabled>
+        </div><!-- /input-container -->
+      </div>
+
+      <div>
+        <div>
+            <input type="text" name="number" ng-model="addressFormData.number" class="number" id="number" placeholder="Digite o número">
+        </div><!-- /input-container -->
+
+        <div>
+            <input type="text" name="complement" ng-model="addressFormData.complement" class="complement" id="complement" title="Apartamento, bloco, observações e até pontos de referência." placeholder="Digite o complemento">
+        </div><!-- /input-container -->
+
+      </div>
+
+      <div class="row">
+        <div>
+            <p>Dados da pessoa que receberá o produto neste endereço</p>
+        </div>
+
+        <div>
+            <input type="text" name="name" ng-model="addressFormData.first_name" class="name" id="name" placeholder="Nome*" required>
+        </div><!-- /input-container -->
+
+        <div>
+            <input type="text" name="last_name" ng-model="addressFormData.last_name" class="last_name" id="last_name" placeholder="Sobrenome*" required>
+        </div><!-- /input-container -->
+
+        <div>
+            <input type="text" name="area_code" ng-model="addressFormData.area_code" class="area_code" id="area_code" placeholder="DDD*" required>
+        </div><!-- /input-container -->
+
+        <div>
+            <input type="text" name="phone_number" ng-model="addressFormData.telephone" class="phone_number" id="phone_number" placeholder="Telefone*" required>
+        </div><!-- /input-container -->
+
+        <div>
+            <button type="button" class="custom-button button-style1 no-border" ng-click="saveAddress(addressFormData)">Cadastrar</button>
+        </div><!-- /input-container -->
+     </div><!-- /row -->
+
+    </div>
+
+   </form>
+
+	</div>
+
+	<div ng-if="deliveryData.shipping_date">
+	  <div class="container">
+	    <div class="row">
+
+        <h2>Data e Hora Aproximada da <span ng-if="!shipping">Retirada</span> <span ng-if="shipping">Entrega</span> </h2>
+
+				<header ng-if="deliveryData.has_production">
+          <p>Atenção: As encomendas devem ser feitas com {{deliveryData.production_time}} horas de antecedência.</p>
+					<p>Consulte o horário de funcionamento.</p>
+        </header>
+
+					<div>
+						<p class="section-title">
+							Escolha a Data
+						</p>
+						<datepicker date="checkoutFromData.date"></datepicker>
+					</div>
+
+					<div>
+						<p class="section-title">
+							Escolha a Hora Aproximada
+						</p>
+						<timepicker date="checkoutFromData.time"></timepicker>
+					</div>
+
+	    </div><!-- /row -->
+	  </div><!-- /container -->
+	</div>
+
+
+	<div class="store-checkout section">
+
+			<h2>Resumo do Carrinho</h2>
+
+			<div class="container">
+				<div class="row">
+
+					<table>
+						<thead>
+							<tr >
+								<th>
+									Produtos
+								</th>
+							</tr>
+							<tr>
+									<th>Produto</th>
+									<th>Preço</th>
+									<th>Quantidade</th>
+									<th>Valor</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="product in cart.getCartItems()">
+								<td>{{ product.name }}</td>
+								<td><strong>{{ product.price | currency : "R$ " }} </strong></td>
+								<td><strong> {{ product.quantity }} </strong></td>
+								<td><strong>{{ product.price * product.quantity | currency : "R$ " }} </strong></td>
+								</tr>
+						</tbody>
+						<tfooter>
+  						<tr>
+  							<td colspan="4">
+  								Valores
+  							</td>
+  						</tr>
+							<tr class="checkout-table-sumary">
+								<td><strong>DESCONTO</strong></td>
+								<td><strong>FRETE</strong></td>
+								<td><strong>SUBTOTAL</strong></td>
+								<td><strong>TOTAL</strong></td>
+							</tr>
+							<tr>
+								<td>R$ 0,00</td>
+								<td>{{ shipping_price | currency : "R$ " }}</td>
+								<td>{{ cart.cartSubTotal() | currency : "R$ " }}</td>
+								<td>{{ getTotal() | currency : "R$ " }}</td>
+							</tr>
+						</tfooter>
+					</table>
+
+			</div><!-- /row -->
+		</div><!-- /container -->
+	</div>
+
+	<div>
+
+  	<form name="cardForm" ng-submit="doCheckout(checkoutFromData)">
+  		<button type="submit">Pagar e Concluir</button>
+  		<hr>
+  	</form>
+
+	</div>
+
+
+</div>

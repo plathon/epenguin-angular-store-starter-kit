@@ -1,0 +1,148 @@
+<section ng-if="has_address()">
+  <div class="container">
+    <div class="row">
+
+      <h1>Meus Endereços</h1>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Endereço</th>
+            <th>Ação</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="address in addresses">
+            <td>{{address.address}}, n {{address.number}} - {{address.complement}} <br> {{address.neighborhood_name}} - {{address.zipcode}} <br> {{address.city_name}}, {{address.state_name}} - Brasil <br> - {{address.first_name}} {{address.last_name}} </td>
+            <td>
+              <button ng-click="removeAddress($index, address.id)" type="button">Remover</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</section>
+
+<section ng-if="!has_address()">
+  <div class="container">
+    <div class="row">
+
+      <header class="section-title">
+        <h2>Nenhum Endereço Favorito</h2>
+      </header>
+
+    </div>
+  </div>
+</section>
+
+<section ng-click="address_tab = !address_tab">
+  <div class="row">
+      <button>
+        Cadastrar Novo Endereço
+      </button>
+    </div>
+</section>
+
+<section ng-if="address_tab">
+  <div class="container">
+    <div class="row">
+
+        <header>
+          <h1>Adicionar novo endereço Favorito</h1>
+        </header>
+
+        <form method="post" ng-submit="saveAddress(addressFormData)">
+          <div class="row">
+            <div>
+              <input type="text" name="zip" placeholder="Digite o CEP*" ng-model="addressFormData.zipcode" required>
+            </div><!-- /input-container -->
+
+            <div>
+              <button ng-click="getAddressByZipcode(addressFormData.zipcode)" type="button">OK</button>
+            </div><!-- /input-container -->
+
+            <div>
+                <a href="http://www.buscacep.correios.com.br/" target="_blank">
+                  <button type="button">Não sabe o CEP?</button>
+                </a>
+            </div><!-- /input-container -->
+          </div>
+
+          <div ng-if="current_address">
+
+            <div>
+
+              <div>
+                  <input type="text" name="cowntry" ng-model="addressFormData.country"  class="cowntry" id="cowntry" placeholder="País" title="Preenchimento automático." disabled>
+              </div><!-- /input-container -->
+
+              <div class="input-container col-md-4">
+                  <input type="text" name="state" ng-model="addressFormData.state_name" class="state" id="state" placeholder="Estado" title="Preenchimento automático." disabled>
+              </div><!-- /input-container -->
+
+              <div class="input-container col-md-4">
+                  <input type="text" name="city" ng-model="addressFormData.city_name" class="city" id="city" placeholder="Cidade" title="Preenchimento automático." disabled>
+              </div><!-- /input-container -->
+
+              <div class="input-container col-md-6">
+                  <input type="text" name="address" ng-model="addressFormData.address" class="address" id="address2" placeholder="Endereço" title="Preenchimento automático." disabled>
+              </div><!-- /input-container -->
+
+              <div class="input-container col-md-6">
+                  <input type="text" name="district" ng-model="addressFormData.neighborhood_name" class="district" id="district" placeholder="Bairro" title="Preenchimento automático." disabled>
+              </div><!-- /input-container -->
+            </div>
+
+            <div class="row">
+              <div class="input-container col-md-6">
+                  <input type="text" name="number" ng-model="addressFormData.number" class="number" id="number" placeholder="Digite o número">
+              </div><!-- /input-container -->
+
+              <div class="input-container col-md-6">
+                  <input type="text" name="complement" ng-model="addressFormData.complement" class="complement" id="complement" title="Apartamento, bloco, observações e até pontos de referência." placeholder="Digite o complemento">
+              </div><!-- /input-container -->
+
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                  <p>Dados da pessoa que receberá o produto neste endereço</p>
+              </div>
+
+              <div class="input-container col-md-3">
+                  <input type="text" name="name" ng-model="addressFormData.first_name" class="name" id="name" placeholder="Nome*" required>
+              </div><!-- /input-container -->
+
+              <div class="input-container col-md-3">
+                  <input type="text" name="last_name" ng-model="addressFormData.last_name" class="last_name" id="last_name" placeholder="Sobrenome*" required>
+              </div><!-- /input-container -->
+
+              <div class="input-container col-md-2">
+                  <input type="text" name="area_code" ng-model="addressFormData.area_code" class="area_code" id="area_code" placeholder="DDD*" required>
+              </div><!-- /input-container -->
+
+              <div class="input-container col-md-4">
+                  <input type="text" name="phone_number" ng-model="addressFormData.telephone" class="phone_number" id="phone_number" placeholder="Telefone*" required>
+              </div><!-- /input-container -->
+
+              <div class="input-container col-md-12">
+                  <button type="submit" class="custom-button button-style1 no-border">Cadastrar</button>
+              </div><!-- /input-container -->
+           </div><!-- /row -->
+
+         </div>
+       </form>
+
+   </div><!-- /row -->
+ </div><!-- /container -->
+</section>
+
+<section>
+  <div class="container">
+    <div class="row">
+      <a href="#/account" class="custom-button button-style1 large">Minha Conta</a>
+    </div>
+  </div>
+</section>

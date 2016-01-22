@@ -1,0 +1,93 @@
+<div class="container" ng-if="hasCartItems()">
+
+  <div class="row">
+    <div>
+      <a href="#/">
+        <button>Continuar comprando</button>
+      </a>
+    </div>
+    <div>
+      <button ng-click="emptyCart()">Limpar Carrinho</button>
+    </div>
+  </div>
+
+  <div class="row">
+    <table>
+
+      <thead>
+        <tr>
+          <th class="item-thumb">Imagem</th>
+          <th class="item-desc">Produto</th>
+          <th>Preço (Unidade)</th>
+          <th>Quantidade</th>
+          <th>Subtotal</th>
+          <th class="remove-item"> remover </th>
+        </tr>
+      </thead>
+
+      <tbody>
+  			<tr ng-repeat="item in getCartItems()">
+        	<td>
+      			<figure>
+		             <span ng-if="image.hasImage(product.images)" class="figure-img-helper"></span><img ng-if="image.hasImage(item.images)" ng-src="{{ image.url( item.images, '100' ) }}" alt="{{ item.name }}" class="cart-img">
+                 <span ng-if="!image.hasImage(product.images)" class="figure-img-helper"></span><img ng-if="!image.hasImage(item.images)" ng-src="https://s3.amazonaws.com/epenguin-images-v/Img_Fail_800x600.png" alt="{{ item.name }}" class="cart-img">
+            </figure>
+  				</td>
+          <td class="item-desc"> {{ item.name }} </td>
+          <td><del><!-- price off --></del> <strong> {{ item.price | currency : "R$ "}}</strong></td>
+          <td>
+          	<input type="number" class="cart-qtd" ng-model="item.quantity" ng-change="item.quantity = changeCartItemQty($index, item.quantity)" min="1">
+          </td>
+          <td><strong> {{item.price * item.quantity | currency : "R$ "}} </strong></td>
+          <td class="remove-item">
+          	<a href="" title="Remover produto." ng-click="removeItemFromCart($index)">
+              Delete
+						</a>
+          </td>
+      	</tr>
+      </tbody>
+
+      <tfoot>
+        <tr>
+          <td> <h3>Subtotal </h3> </td>
+          <td> <h3>{{ cartSubTotal() | currency : "R$ " }} </h3> </td>
+        </tr>
+        <tr>
+          <td> <h3> Desconto </h3> </td>
+          <td> <h3>{{ cartOff() | currency : "R$ "}} </h3> </td>
+        </tr>
+        <tr>
+          <td> <h3> Total </h3> </td>
+          <td> <h3>{{ cartTotal() | currency : "R$ "}}</h3> </td>
+        </tr>
+      </tfoot>
+
+    </table>
+
+    <div><a href="#/checkout">Comprar</a></div>
+
+  </div>
+
+</div>
+
+<section ng-if="!hasCartItems()">
+
+	<div class="container">
+		<div class="row">
+
+				<div>
+					<h1>Carrinho de <span>compras vazio...</span></h1>
+				</div>
+
+		</div>
+	</div>
+
+	<div class="container">
+    <div class="row">
+
+        <a href="#/">Voltar ao Início</a>
+
+    </div>
+  </div>
+
+</section>

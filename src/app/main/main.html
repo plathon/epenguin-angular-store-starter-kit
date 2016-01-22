@@ -1,0 +1,47 @@
+<div class="container">
+
+<h1>main page</h1>
+
+<div class="container">
+  <div class="row">
+
+    <header>
+      <h1><span>Mais Vendidos</span></h1>
+    </header>
+
+    <div ng-repeat="bestseller in bestsellers">
+        <productcard product="bestseller"></productcard>
+    </div>
+
+  </div><!-- /row -->
+</div><!-- /container -->
+
+<div class="container">
+  <div class="row">
+
+    <header>
+      <h1><span>Recomendados</span></h1>
+    </header>
+
+    <div ng-repeat="indicatedProduct in indicatedProducts">
+      <productcard product="indicatedProduct"></productcard>
+    </div>
+
+  </div><!-- /row -->
+</div><!-- /container -->
+
+<div class="container">
+  <div class="row">
+
+    <header>
+      <h1><span>Mais Recentes</span></h1>
+    </header>
+
+    <div ng-repeat="newProduct in newProducts">
+      <product-card product="newProduct"></product-card>
+    </div>
+
+  </div><!-- /row -->
+</div><!-- /container -->
+
+</div>
