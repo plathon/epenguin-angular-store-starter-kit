@@ -6,10 +6,7 @@
     .controller('AuthCtrl', AuthCtrl);
 
   /** @ngInject */
-  function AuthCtrl(user, page, api, $scope, $http, $location, store, Flash) {
-
-    //page
-    page.setTitle('Autenticação');
+  function AuthCtrl(user, api, $scope, $http, $location, store, Flash) {
 
     //login method
     $scope.signin = function (paramsData) {

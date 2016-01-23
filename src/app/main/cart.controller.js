@@ -6,10 +6,7 @@
     .controller('CartCtrl', CartCtrl);
 
   /** @ngInject */
-  function CartCtrl(page, image, cart, $scope) {
-
-    //page
-    page.setTitle('Carrinho de Compras');
+  function CartCtrl(image, cart, $scope) {
 
     $scope.cartTotal = function () {
       return cart.cartTotal();

@@ -6,10 +6,7 @@
     .controller('AddressCtrl', AddressCtrl);
 
   /** @ngInject */
-  function AddressCtrl(page, api, $scope, $http, address, Flash) {
-
-    //page
-    page.setTitle('Endereços');
+  function AddressCtrl(api, $scope, $http, address, Flash) {
 
     //NAV variable
     $scope.addressFormData = {};

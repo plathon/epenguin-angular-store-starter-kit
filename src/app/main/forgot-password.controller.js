@@ -6,10 +6,7 @@
     .controller('ForgotPasswordCtrl', ForgotPasswordCtrl);
 
   /** @ngInject */
-  function ForgotPasswordCtrl(page, user, $scope, Flash) {
-
-    //page
-    page.setTitle('Esqueci Minha Senha');
+  function ForgotPasswordCtrl( user, $scope, Flash) {
 
     $scope.email = '';
 

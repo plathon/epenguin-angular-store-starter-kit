@@ -6,7 +6,7 @@
     .controller('ProductCtrl', ProductCtrl);
 
   /** @ngInject */
-  function ProductCtrl(page, image, api, product, $scope, $http, $routeParams, cart) {
+  function ProductCtrl( image, api, product, $scope, $http, $routeParams, cart) {
 
     //page number
     $scope.page     = 1;
@@ -15,9 +15,6 @@
     //get product
     product.get( $routeParams.id ).then(function ( data ) {
       $scope.product  = data;
-      //page title
-      page.setTitle( $scope.product.name );
-
       $scope.gallery  = image.gallery( $scope.product.images, '100', '500' );
       product.related( $scope.product, $scope.page, $scope.per, $scope.product.id ).then(function (data) {
         $scope.related = data;

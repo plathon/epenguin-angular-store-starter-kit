@@ -6,10 +6,7 @@
     .controller('ResetPasswordCtrl', ResetPasswordCtrl);
 
   /** @ngInject */
-  function ResetPasswordCtrl(page, user, $scope, Flash, $routeParams, $location) {
-
-    //page
-    page.setTitle('Trocar Senha');
+  function ResetPasswordCtrl( user, $scope, Flash, $routeParams, $location ) {
 
     $scope.reset_password = function (data) {
       data.token = $routeParams.token;

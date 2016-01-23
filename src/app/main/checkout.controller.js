@@ -6,11 +6,7 @@
     .controller('CheckoutCtrl', CheckoutCtrl);
 
   /** @ngInject */
-  function CheckoutCtrl($pgCheckout, page, api, payment, delivery, address, checkout, cart, $scope, $location, ngDialog, store, Flash, mystore, SweetAlert) {
-
-    //page
-    page.setTitle('Finalizar Compra');
-
+  function CheckoutCtrl($pgCheckout, api, payment, delivery, address, checkout, cart, $scope, $location, ngDialog, store, Flash, mystore, SweetAlert) {
     //checkout form data
     $scope.checkoutFromData = {};
 

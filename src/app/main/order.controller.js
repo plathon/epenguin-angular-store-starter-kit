@@ -6,10 +6,7 @@
     .controller('OrderCtrl', OrderCtrl);
 
   /** @ngInject */
-  function OrderCtrl(page, order, $scope) {
-
-    //page
-    page.setTitle('Pedidos');
+  function OrderCtrl( order, $scope) {
 
     //get user orders
     order.get().then(function (data) {

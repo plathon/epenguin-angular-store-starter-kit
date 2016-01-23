@@ -6,10 +6,7 @@
     .controller('UserCtrl', UserCtrl);
 
   /** @ngInject */
-  function UserCtrl(page, user, $scope, Flash, store) {
-
-    //page
-    page.setTitle('Usuário');
+  function UserCtrl( user, $scope, Flash, store) {
 
     $scope.userFormData = {};
 

@@ -6,9 +6,8 @@
     .controller('MainController', MainController);
 
   /** @ngInject */
-  function MainController(page, $scope, $http, api, Flash) {
-    //page
-    page.setTitle('Principal');
+  function MainController( $scope, $http, api, Flash) {
+
     //title
     $scope.title = "Home";
     $scope.subTitle = "home page products";

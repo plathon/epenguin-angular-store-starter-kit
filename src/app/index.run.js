@@ -6,7 +6,7 @@
     .run(runBlock);
 
   /** @ngInject */
-  function runBlock($rootScope, $location, jwtHelper, store, user, mystore, SweetAlert) {
+  function runBlock($rootScope, $location, jwtHelper, store, user, mystore, SweetAlert, STORE_DATA) {
 
     mystore.get().then(function ( data ) {
       if ( !data.available ) {
@@ -14,9 +14,9 @@
       }
     });
 
-    $rootScope.title = "Store";
-    $rootScope.subtitle = "Main";
+    $rootScope.title = STORE_DATA.name;
     $rootScope.userData = null;
+
     /**
     * logout!
     **/

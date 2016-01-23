@@ -6,10 +6,7 @@
     .controller('RegisterCtrl', RegisterCtrl);
 
   /** @ngInject */
-  function RegisterCtrl(page, api, $scope, $http, $location, store, ngDialog, terms, Flash) {
-
-    //page
-    page.setTitle('Cadastro');
+  function RegisterCtrl( api, $scope, $http, $location, store, ngDialog, terms, Flash) {
 
     //register method
     $scope.signup = function (paramsData) {

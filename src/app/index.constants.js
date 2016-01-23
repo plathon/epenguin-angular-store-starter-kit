@@ -2,9 +2,12 @@
 (function() {
   'use strict';
 
-  //angular
-  //  .module('epenguinAngularGulp')
-  //  .constant('malarkey', malarkey)
-  //  .constant('moment', moment);
+  angular
+    .module('epenguinAngularGulp')
+    .constant('STORE_DATA', {
+      name: "Store Name",
+      description: "Store description",
+      url: "www.store.com.br"
+    })
 
 })();

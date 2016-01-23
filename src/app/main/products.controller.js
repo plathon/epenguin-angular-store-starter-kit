@@ -6,12 +6,7 @@
     .controller('ProductsCtrl', ProductsCtrl);
 
   /** @ngInject */
-  function ProductsCtrl(page, api, product, category, image, $scope, $routeParams, $http, $location) {
-
-    /**
-    * page title service
-    **/
-    page.setTitle('Produtos');
+  function ProductsCtrl( api, product, category, image, $scope, $routeParams, $http, $location) {
 
     /**
     * settings
