@@ -15,7 +15,7 @@
       addToCart: function (item, qty, options) {
         //default values
         options = typeof options !== 'undefined' ? options : [];
-        qty     = typeof qty !== 'undefined' ? qty : 1;
+        qty     = typeof qty !== 'undefined' ? parseInt(qty) : 1;
         var message = '';
         //qty products
         if ( qty > item.quantity || qty <= 0 ) {
