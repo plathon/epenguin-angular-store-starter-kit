@@ -4,10 +4,14 @@
 
   angular
     .module('epenguinAngularGulp')
+
     .constant('STORE_DATA', {
       name: "Store Name",
       description: "Store description",
-      url: "www.store.com.br"
+      url: "www.store.com.br"})
+
+    .constant('API', {
+      path: "API_BASE_URL"
     })
 
 })();
